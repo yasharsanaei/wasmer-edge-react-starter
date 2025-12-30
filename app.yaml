@@ -1,5 +1,5 @@
-name: edge-react-starter
-app_id: da_8RjPIgtQUOqK
+name: events
+app_id: da_R8EIJtNUDgWQ
 owner: yasharsanaei
 package: .
 kind: wasmer.io/App.v0

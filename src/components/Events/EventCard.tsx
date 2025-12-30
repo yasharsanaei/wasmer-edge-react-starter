@@ -18,8 +18,8 @@ const EventCard = ({event}: EventCardProps) => {
                  top: `${top}px`,
                  height: `${height}px`
              }}>
-            <h2>Title</h2>
-            <p>An event from {event.start} to {event.end}</p>
+            <h2>{event.title}</h2>
+            <p>{event.location}</p>
         </div>
     </>
 }
