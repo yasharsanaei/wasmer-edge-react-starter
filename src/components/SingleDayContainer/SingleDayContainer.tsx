@@ -14,7 +14,6 @@ const hoursText = (v: number) => {
 }
 
 const SingleDayContainer = React.memo(() => {
-    console.log('---( ! )---> SingleDayContainer render \n');
     return <>
         <div className="container">
             <div className="timeline">

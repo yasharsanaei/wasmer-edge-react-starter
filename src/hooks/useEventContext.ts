@@ -1,6 +1,6 @@
 import {EventContext, EventContextModel} from "../context/EventContext.ts";
 import {EventLayoutModel, EventModel} from "../utils/event.model.ts";
-import {useContext, useEffect} from "react";
+import {useContext} from "react";
 
 const createGroups = (events: EventModel[]) => {
     const sorted = [...events].sort((a, b) => a.start - b.start);
@@ -61,23 +61,34 @@ export const useEventContext = () => {
     const {events, setEvents} = useContext<EventContextModel>(EventContext);
 
     const updateEvents = (value: EventModel | EventModel[]) => {
-        let events = [];
-        if (!Array.isArray(value)) {
-            events = [value]
-        } else {
-            events = [...value]
+        try {
+            let events = [];
+            const ignoredEvents: EventModel[] = [];
+            const validEvents: EventModel[] = [];
+            if (!Array.isArray(value)) {
+                events = [value]
+            } else {
+                events = [...value]
+            }
+            for (const event of events) {
+                if (event.start >= event.end) ignoredEvents.push(event);
+                else if (typeof event.start === 'string' && Number.isNaN(parseInt(event.start))) ignoredEvents.push(event);
+                else if (typeof event.end === 'string' && Number.isNaN(parseInt(event.end))) ignoredEvents.push(event);
+                else validEvents.push(event);
+            }
+            validEvents.forEach(event => {
+                if (!event.id) event.id = crypto?.randomUUID();
+                if (!event.title) event.title = "Sample Item"
+                if (!event.location) event.location = "Sample Location"
+            })
+            setEvents(prev => createLayout([...prev, ...validEvents]));
+            if (ignoredEvents.length) {
+                console.error("Events that rejected: ", ignoredEvents);
+            }
+        } catch (e) {
+            console.error(e);
         }
-        events.forEach(event => {
-            if (!event.id) event.id = crypto?.randomUUID();
-            if (!event.title) event.title = "Sample Item"
-            if (!event.location) event.location = "Sample Location"
-        })
-        setEvents(prev => createLayout([...prev, ...events]));
     };
-
-    useEffect(() => {
-        console.log('-----> events: ', events);
-    }, [events]);
 
     return {events, updateEvents}
 }
