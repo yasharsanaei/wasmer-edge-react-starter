@@ -6,14 +6,11 @@ const GlobalHandler = () => {
     const {updateEvents} = useEventContext();
 
     useEffect(() => {
+        console.log('---> handler effect ')
         window.layOutDay = (events: EventModel[]) => {
             updateEvents(events)
         };
-
-        return () => {
-            delete window.layOutDay;
-        };
-    }, [updateEvents]);
+    });
 
     return null;
 }
