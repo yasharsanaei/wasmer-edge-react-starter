@@ -46,8 +46,12 @@ const createColumns = (group: EventModel[]): EventLayoutModel[] => {
     }
 
     const columnCount = columns.length;
-    result.forEach(e => (e.columnCount = columnCount));
-
+    result.forEach(e => {
+        e.columnCount = columnCount
+        if (!e.id) e.id = crypto?.randomUUID();
+        if (!e.title) e.title = "Sample Item"
+        if (!e.location) e.location = "Sample Location"
+    });
     return result;
 }
 
@@ -76,11 +80,6 @@ export const useEventContext = () => {
                 else if (typeof event.end === 'string' && Number.isNaN(parseInt(event.end))) ignoredEvents.push(event);
                 else validEvents.push(event);
             }
-            validEvents.forEach(event => {
-                if (!event.id) event.id = crypto?.randomUUID();
-                if (!event.title) event.title = "Sample Item"
-                if (!event.location) event.location = "Sample Location"
-            })
             setEvents(prev => createLayout([...prev, ...validEvents]));
             if (ignoredEvents.length) {
                 console.error("Events that rejected: ", ignoredEvents);
