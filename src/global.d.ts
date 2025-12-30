@@ -1,4 +1,4 @@
-import {EventModel} from "./utils/event.model.ts";
+import {EventModel} from "./types.ts";
 
 declare global {
     interface Window {

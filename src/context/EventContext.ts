@@ -1,5 +1,5 @@
 import React, {createContext} from "react";
-import {EventLayoutModel} from "../utils/event.model.ts";
+import {EventLayoutModel} from "../types.ts";
 
 
 export type EventContextModel = {

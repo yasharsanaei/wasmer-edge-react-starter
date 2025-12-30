@@ -1,5 +1,5 @@
 import {EventContext, EventContextModel} from "../context/EventContext.ts";
-import {EventLayoutModel, EventModel} from "../utils/event.model.ts";
+import {EventLayoutModel, EventModel} from "../types.ts";
 import {useContext} from "react";
 
 const createGroups = (events: EventModel[]) => {

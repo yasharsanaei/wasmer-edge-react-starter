@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {EventModel} from "../../utils/event.model.ts";
+import {EventModel} from "../../types.ts";
 import {useEventContext} from "../../hooks/useEventContext.ts";
 
 const GlobalHandler = () => {

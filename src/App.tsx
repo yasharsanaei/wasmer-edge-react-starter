@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {EventLayoutModel} from "./utils/event.model.ts";
+import {EventLayoutModel} from "./types.ts";
 import GlobalHandler from "./components/GlobalHandler/GlobalHandler.tsx";
 import SingleDayContainer from "./components/SingleDayContainer/SingleDayContainer.tsx";
 import {EventContext} from "./context/EventContext.ts";

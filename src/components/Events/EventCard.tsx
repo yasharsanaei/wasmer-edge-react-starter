@@ -1,4 +1,4 @@
-import {EventLayoutModel} from "../../utils/event.model.ts";
+import {EventLayoutModel} from "../../types.ts";
 
 type EventCardProps = {
     event: EventLayoutModel
